@@ -41,6 +41,13 @@ BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(skia)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(xcb-xkb)
+BuildRequires:	pkgconfig(xkbcommon-x11)
+BuildRequires:	pkgconfig(xkbcommon)
+BuildRequires:	pkgconfig(xkbcomp)
+BuildRequires:	pkgconfig(xkbfile)
+BuildRequires:	pkgconfig(xkbregistry)
 
 %patchlist
 ladybird-compile.patch

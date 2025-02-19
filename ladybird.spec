@@ -37,6 +37,7 @@ BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(skia)
+BuildRequires:	pkgconfig(openssl)
 
 %patchlist
 ladybird-compile.patch

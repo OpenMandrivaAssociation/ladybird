@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig(libavformat)
 BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(skia)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:	pkgconfig(sqlite3)
 
 %patchlist
 ladybird-compile.patch

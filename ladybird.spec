@@ -7,7 +7,7 @@ Source0:	https://github.com/LadybirdBrowser/ladybird/archive/refs/heads/master.t
 # Usually downloaded at build time
 Source10:	https://curl.se/ca/cacert-2023-12-12.pem
 Source11:	https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat
-Summary:	Truly independent web browser
+Summary:	Early preview of a truly independent web browser
 URL:		https://ladybird.org/
 License:	BSD-2-Clause
 Group:		Applications/Internet
@@ -30,6 +30,7 @@ BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(fontconfig)
 BuildRequires:	pkgconfig(libwoff2dec)
+BuildRequires:	pkgconfig(libwoff2enc)
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(libpng)
@@ -55,6 +56,10 @@ ladybird-compile.patch
 %description
 An independent web browser, not using the Chromium or Firefox rendering
 engines or forks thereof.
+
+THIS IS AN EARLY PREVIEW VERSION. A first usable alpha version is planned
+for Summer 2026. These early previews are not fully working yet, but can
+help curious people see the progress and catch bugs.
 
 %package -n %{devname}
 Summary:	Development files for %{name}

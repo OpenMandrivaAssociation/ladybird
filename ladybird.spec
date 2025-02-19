@@ -89,3 +89,4 @@ export LD_LIBRARY_PATH=$(pwd)/_OMV_rpm_build/%{_lib}
 %files -n %{devname}
 %{_includedir}/*
 %{_libdir}/*.so
+%{_libdir}/*.a

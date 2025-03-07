@@ -2,7 +2,7 @@
 
 Name:		ladybird
 Version:	0.0
-Release:	0.20250219.1
+Release:	0.20250219.2
 Source0:	https://github.com/LadybirdBrowser/ladybird/archive/refs/heads/master.tar.gz
 # Usually downloaded at build time
 Source10:	https://curl.se/ca/cacert-2023-12-12.pem

@@ -1,13 +1,12 @@
-diff --git a/Libraries/LibWeb/CMakeLists.txt b/Libraries/LibWeb/CMakeLists.txt
-index b169662a03..32d024c4aa 100644
---- a/Libraries/LibWeb/CMakeLists.txt
-+++ b/Libraries/LibWeb/CMakeLists.txt
-@@ -942,7 +942,7 @@ set(GENERATED_SOURCES
+diff -up ladybird-0.0/Libraries/LibWeb/CMakeLists.txt.1~ ladybird-0.0/Libraries/LibWeb/CMakeLists.txt
+--- ladybird-0.0/Libraries/LibWeb/CMakeLists.txt.1~	2025-03-31 18:23:38.032340552 +0200
++++ ladybird-0.0/Libraries/LibWeb/CMakeLists.txt	2025-03-31 18:24:32.420988999 +0200
+@@ -974,7 +974,7 @@ set(GENERATED_SOURCES
  
  serenity_lib(LibWeb web)
  
--target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP LibGfx LibIPC LibRegex LibSyntax LibTextCodec LibUnicode LibMedia LibWasm LibXML LibIDL LibURL LibTLS LibRequests LibGC skia)
-+target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP LibGfx LibIPC LibRegex LibSyntax LibTextCodec LibUnicode LibMedia LibWasm LibXML LibIDL LibURL LibTLS LibRequests LibGC skia GL)
+-target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP LibGfx LibIPC LibRegex LibSyntax LibTextCodec LibUnicode LibMedia LibWasm LibXML LibIDL LibURL LibTLS LibRequests LibGC LibThreading skia)
++target_link_libraries(LibWeb PRIVATE LibCore LibCompress LibCrypto LibJS LibHTTP LibGfx LibIPC LibRegex LibSyntax LibTextCodec LibUnicode LibMedia LibWasm LibXML LibIDL LibURL LibTLS LibRequests LibGC LibThreading skia GL)
  
  if (APPLE)
      target_link_libraries(LibWeb PRIVATE unofficial::angle::libEGL unofficial::angle::libGLESv2)

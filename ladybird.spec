@@ -1,9 +1,14 @@
 %define devname %mklibname Ladybird -d
+# sourcedate is taken from package-source.sh archive name
+# which is the same date the archive is created on. in format: YYYYMMDD
+%define sourcedate 20250607
 
 Name:		ladybird
 Version:	0.0
-Release:	0.20250331.1
-Source0:	https://github.com/LadybirdBrowser/ladybird/archive/refs/heads/master.tar.gz
+Release:	0.%{sourcedate}.1
+# Using date-stamped source tarball created by package-source.sh script
+Source0:	ladybird-%{sourcedate}.tar.zst
+#Source0:	https://github.com/LadybirdBrowser/ladybird/archive/refs/heads/master.tar.gz
 # Usually downloaded at build time
 Source10:	https://curl.se/ca/cacert-2023-12-12.pem
 Source11:	https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat
@@ -15,6 +20,7 @@ BuildRequires:	cmake
 BuildSystem:	cmake
 BuildOption:	-DENABLE_NETWORK_DOWNLOADS:BOOL=OFF
 BuildOption:	-DENABLE_CACERT_DOWNLOAD:BOOL=OFF
+BuildOption:	-DENABLE_QT=ON
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6CoreTools)
 BuildRequires:	cmake(Qt6DBus)
@@ -23,9 +29,9 @@ BuildRequires:	cmake(Qt6GuiTools)
 BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(Qt6WidgetsTools)
-BuildRequires:	cmake(harfbuzz)
 BuildRequires:	cmake(CURL)
 BuildRequires:	cmake(simdutf)
+BuildRequires:	pkgconfig(harfbuzz)
 BuildRequires:	pkgconfig(libavif)
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(fontconfig)
@@ -52,6 +58,11 @@ BuildRequires:	pkgconfig(xkbregistry)
 
 %patchlist
 ladybird-compile.patch
+ladybird-libgfx-harfbuzz-fontconfig-fix.patch
+# above patch fixes build by modifying internal subpackage LibGfx
+# CMakeLists harfbuzz detection to use pkgconfig method and also fixes
+# fontconfig detection in a similar way but wraps it in the HAS_FONTCONFIG flag
+# in line with the other CMakeLists fontconfig entries.
 
 %description
 An independent web browser, not using the Chromium or Firefox rendering
@@ -218,6 +229,13 @@ MimeType=text/html;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/
 Terminal=false
 EOF
 
+# install available .desktop file Icon sizes
+for i in 48 128
+do
+	install -Dpm 0644 Base/res/icons/${i}x${i}/app-browser.png \
+	%{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/ladybird.png
+done
+
 %files
 %{_bindir}/Ladybird
 %{_bindir}/js
@@ -226,6 +244,7 @@ EOF
 %{_datadir}/Ladybird
 %{_datadir}/Lagom
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/hicolor/*/apps/ladybird.png
 
 %files -n %{devname}
 %{_includedir}/*

@@ -1,0 +1,24 @@
+diff -x '.*' -urN ladybird/Libraries/LibGfx/CMakeLists.txt ladybird-libgfx-harfbuzz-fontconfig-fix/Libraries/LibGfx/CMakeLists.txt
+--- ladybird/Libraries/LibGfx/CMakeLists.txt	2025-06-07 08:37:31.545296613 +0100
++++ ladybird-libgfx-harfbuzz-fontconfig-fix/Libraries/LibGfx/CMakeLists.txt	2025-06-07 09:54:12.874791377 +0100
+@@ -116,10 +116,18 @@
+ find_package(PNG REQUIRED)
+ find_package(LIBAVIF REQUIRED)
+ find_package(WebP REQUIRED)
+-find_package(harfbuzz REQUIRED)
++pkg_check_modules(harfbuzz REQUIRED IMPORTED_TARGET harfbuzz)
++if (HAS_FONTCONFIG)
++    pkg_check_modules(fontconfig REQUIRED IMPORTED_TARGET fontconfig)
++endif()
+ 
+-target_link_libraries(LibGfx PRIVATE PkgConfig::WOFF2 JPEG::JPEG PNG::PNG avif WebP::webp WebP::webpdecoder
++if (HAS_FONTCONFIG)
++    target_link_libraries(LibGfx PRIVATE PkgConfig::WOFF2 JPEG::JPEG PNG::PNG avif WebP::webp WebP::webpdecoder
++            WebP::webpdemux WebP::libwebpmux skia harfbuzz fontconfig)
++else()
++    target_link_libraries(LibGfx PRIVATE PkgConfig::WOFF2 JPEG::JPEG PNG::PNG avif WebP::webp WebP::webpdecoder
+             WebP::webpdemux WebP::libwebpmux skia harfbuzz)
++endif()
+ 
+ set(CMAKE_REQUIRED_LIBRARIES PNG::PNG)
+ check_c_source_compiles([=[

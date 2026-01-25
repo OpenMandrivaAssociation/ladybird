@@ -4,8 +4,8 @@
 %define sourcedate 20260125
 
 Name:		ladybird
-Version:	0.0
-Release:	2
+Version:	0.0.0~%{sourcedate}
+Release:	1
 # Using date-stamped source tarball created by package-source.sh script
 Source0:	ladybird-%{sourcedate}.tar.zst
 #Source0:	https://github.com/LadybirdBrowser/ladybird/archive/refs/heads/master.tar.gz

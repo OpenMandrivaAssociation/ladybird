@@ -1,0 +1,12 @@
+diff -up ladybird-0.0/Libraries/LibGfx/CMakeLists.txt.omv~ ladybird-0.0/Libraries/LibGfx/CMakeLists.txt
+--- ladybird-0.0/Libraries/LibGfx/CMakeLists.txt.omv~	2026-01-25 16:37:13.485509031 +0100
++++ ladybird-0.0/Libraries/LibGfx/CMakeLists.txt	2026-01-25 16:37:21.932665728 +0100
+@@ -120,7 +120,7 @@ find_package(WebP REQUIRED)
+ find_package(harfbuzz REQUIRED)
+ 
+ target_link_libraries(LibGfx PRIVATE PkgConfig::WOFF2 JPEG::JPEG PNG::PNG avif WebP::webp WebP::webpdecoder
+-            WebP::webpdemux WebP::libwebpmux skia harfbuzz)
++            WebP::webpdemux WebP::libwebpmux skia skcms harfbuzz)
+ 
+ if (HAS_FONTCONFIG)
+     target_link_libraries(LibGfx PRIVATE Fontconfig::Fontconfig)

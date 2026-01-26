@@ -94,6 +94,9 @@ cp %{S:11} _OMV_rpm_build/caches/PublicSuffix/public_suffix_list.dat
 %build -p
 export LD_LIBRARY_PATH=$(pwd)/_OMV_rpm_build/%{_lib}
 
+%install -a
+rm %{buildroot}%{_prefix}/COMMIT
+
 %files
 %{_bindir}/Ladybird
 %{_bindir}/js
